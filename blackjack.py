@@ -1,5 +1,6 @@
 import random
-
+import clear
+from art import logo
 
 def deal_card():
   """Returns a random card from the deck"""
@@ -33,7 +34,7 @@ def compare(user_score, computer_score):
 
 def play_game():
 
-
+  print(logo)
 
   user_cards = []
   computer_cards = []
@@ -68,8 +69,7 @@ def play_game():
   print(compare(user_score, computer_score))
 
 while input("Do you want to plas a game of Blackjack? Type 'y' or 'n': "):
-
+  clear()
   play_game()
 
-#Hint 14: Ask the user if they want to restart the game. If they answer yes, clear the console and start a new game of blackjack and show the logo from art.py.
 
