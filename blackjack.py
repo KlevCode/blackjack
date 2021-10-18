@@ -1,32 +1,26 @@
 import random
 
-cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
+def deal_card():
+  """Returns a random card from the deck"""
+  cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
+  card = random.choice(cards)
+  return card
 
 user_cards = []
 computer_cards = []
 
-def deal_card():
-  user_cards = random.choices(cards, k=2)
-  computer_cards = random.choices(cards, k=2)
-  print(user_cards, computer_cards)
+for _ in range(2):
+  user_cards.append(deal_card())
+  computer_cards.append(deal_card())
 
-deal_card()
-
-def calculate_score(deal_card):
-  sum_user_cards = sum(user_cards)
-  sum_computer_cards = sum(computer_cards)
-  if user_cards == [11, 10] or user_cards == [10, 11]:
+def calculate_score(cards):
+  if sum(cards) == 21 and len(cards) == 2:
     return 0
-    print("User wins with blackjack!")
-  elif computer_cards == [11, 10] or computer_cards == [10, 11]:
-    return 0
-    print("Computer wins with blackjack!")
-  elif sum_user_cards > 21:
-    print("Computer wins!")
-  print(sum_user_cards, sum_computer_cards)
+  if 11 in cards and sum(cards) > 21:
+    cards.remove(11)
+    cards.append(1)
 
-
-calculate_score(deal_card)
+  return sum(cards)
 
 
 #Hint 8: Inside calculate_score() check for an 11 (ace). If the score is already over 21, remove the 11 and replace it with a 1. You might need to look up append() and remove().
